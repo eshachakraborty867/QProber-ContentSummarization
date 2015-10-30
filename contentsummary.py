@@ -29,7 +29,7 @@ def summarize(listdir, url):
 
 		for eachurl in url4:
 			newproc = subprocess.Popen(['lynx','-dump',url], stdout=subprocess.PIPE)
-			data, err 	= fetchProcess.communicate()
+			data, err 	= newproc.communicate()
 			ref = data.find('\nReferences\n')
 			before_ref = data[:refPoint].lower()
 
