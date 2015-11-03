@@ -8,9 +8,16 @@ def getTop4url(query):
 	bingurl = "https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?" + query + "=%27site%3afifa.com%20premiership%27&$top=10&$format=Atom"
 	response = urllib.urlopen(url)
 	content = response.read()
+	##parse to get the results		TODO
 
 	url4 = []
-
+	i=0
+	while len(url4) < 4:
+		#url = content [i]			TODO
+		if url.endswith('pdf') or url.endswith('ppt'):
+			continue
+		else:
+			url4.append(url)
 	return url4
 
 
