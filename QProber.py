@@ -9,5 +9,6 @@ if __name__=="__main__":
 	ts = float(ts)
 
 	#QProber Implementation
-	#generate listdir
+	#generate listdir split by "/"
+	#eg. root/health : listdir=['root', 'health']
 	contentsummary.summarize(listdir,url)
