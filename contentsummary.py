@@ -5,7 +5,7 @@ import urllib
 import json
 
 def getTop4url(query):
-	bingurl = "http://api.bing.net/json.aspx?AppId=" + "7Mtcdr7rWaH+3i2WOB4KaKZbAVdwptuX6dG/m7EBCz8" + "&Version=2.2&Market=en-US&Query=" + query + "&Sources=web&Web.Count=20&JsonType=raw"
+	bingurl = "https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?" + query + "=%27site%3afifa.com%20premiership%27&$top=10&$format=Atom"
 	response = urllib.urlopen(url)
 	content = response.read()
 
