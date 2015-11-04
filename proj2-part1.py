@@ -6,10 +6,10 @@ import pickle
 
 
 CATEGORIES = {
-	'root': {'computers', 'sports', 'health'},
-	'computers': {'hardware', 'programming'},
-	'health': {'fitness', 'diseases'},
-	'sports': {'basketball', 'soccer'}
+	'Root': {'Root/Computers', 'Root/Sports', 'Root/Health'},
+	'Root/Computers': {'Root/Computers/Hardware', 'Root/Computers/Programming'},
+	'Root/Health': {'Root/Health/Fitness', 'Root/Health/Diseases'},
+	'Root/Sports': {'Root/Sports/Basketball', 'Root/Sports/Soccer'}
 }
 
 def readCache():
@@ -44,7 +44,7 @@ def getNofPages(site, query, accountKey, cache):
 
 def probe(C, D, accountKey, cache):
 	# Read classifier queries from file
-	with open(C + '.txt', 'r') as f:
+	with open(C.split('/')[-1].lower() + '.txt', 'r') as f:
 		read_data = f.read()
 	queries = read_data.split('\n')
 
@@ -53,7 +53,7 @@ def probe(C, D, accountKey, cache):
 	for c in C_hat:
 		for query in queries:
 			row = query.split(' ')
-			if row[0].lower() == c:
+			if row[0] == c.split('/')[-1]:
 				C_hat[c] += getNofPages(D, row[1:], accountKey, cache)
 	return C_hat
 
@@ -97,8 +97,10 @@ def main():
 	host = sys.argv[4]
 
 	# Classify host
-	result = classify('root', host, t_es, t_c, 1, accountKey, cache)
+	result = classify('Root', host, t_es, t_c, 1, accountKey, cache)
+	print
 	print result
+	print
 
 	# Write cache
 	writeCache(cache)
