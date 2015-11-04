@@ -5,7 +5,16 @@ import urllib
 import json
 
 def getTop4url(query):
-	bingurl = "https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?" + query + "=%27site%3afifa.com%20premiership%27&$top=10&$format=Atom"
+	q = query.split(" ")
+	items = q[0].split(":")
+	site = item[1]
+	query = q[1]
+
+
+
+
+
+	bingurl = 
 	response = urllib.urlopen(url)
 	content = response.read()
 	##parse to get the results		TODO
@@ -19,6 +28,43 @@ def getTop4url(query):
 		else:
 			url4.append(url)
 	return url4
+
+
+
+https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a
+fifa.com
+%20 
+premiership
+%27&$top=10&$format=Atom
+
+
+'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?Query=%27site%3a' + site 
++ '%20' + '%20'.join(query) + '%27&$top=10&$format=Atom'
+
+
+'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a'+ site + '%20'.join(query) + '%27&$top=10&$format=Atom'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def summarize(listdir, url):

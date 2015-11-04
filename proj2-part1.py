@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
-import urllib2
+import urllib, urllib2
 import base64
 import pickle
 from collections import defaultdict
 import os,sys,subprocess
 import re
-import urllib
 import json
 
 
@@ -28,7 +27,7 @@ def getNofPages(site, query, accountKey, cache):
 		return cache[site][' '.join(query)]
 
 	# If not, compute result
-	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?Query=%27site%3a' + site + '%20' + '%20'.join(query) + '%27&$top=10&$format=Atom'
+	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a'+ site + '%20'.join(query) + '%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 	headers = {'Authorization': 'Basic ' + accountKeyEnc}
 	req = urllib2.Request(bingUrl, headers = headers)
@@ -89,6 +88,64 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 	else:
 		return result
 
+def getTop4url(query, accountKey):
+	url4 = []
+	q = query.strip().split(" ")
+
+	items = q[0].split(":")
+	site = items[1].strip()
+	
+
+	query1 = q[1].strip()
+	
+	bingurl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27'+site + '%3a'.join(query1)+'%20 premiership%27&$top=10&$format=Atom'
+	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
+	headers = {'Authorization': 'Basic ' + accountKeyEnc}
+	req = urllib2.Request(bingurl, headers = headers)
+	
+	#response = urllib2.urlopen(req)
+	#content = response.read()
+	#print type(content)
+	#root = ET.fromstring(content)
+	#entries = root.findall('{http://www.w3.org/2005/Atom}entry')
+	return url4
+
+
+def summarize(listdir, url, accountKey):
+
+	for directory in listdir:
+		#try:
+		f1 = open(directory + '.txt')
+		countdict = defaultdict(int)
+
+		for lines in f1:
+			terms = lines.strip().split(" ")
+			keywords = '+'.join(terms[1:])
+
+			url4  = getTop4url(url+keywords, accountKey)
+
+			for eachurl in url4:
+				newproc = subprocess.Popen(['lynx','-dump',url], stdout=subprocess.PIPE)
+				data, err 	= newproc.communicate()
+				ref = data.find('\nReferences\n')
+				before_ref = data[:ref].lower()
+				wordlist = re.findall('[a-z]+',before_ref)
+
+
+				for word in wordlist:
+					countdict[word] += 1
+
+		f2 = open('sample-' + directory + '.txt','w')
+		for word,count in sorted(countdict.items()):
+			f2.write(word + '#' + str(count) + '\n')
+
+		f1.close()
+		f2.close()
+
+		#except Exception:
+		#	sys.exit('No such directory')
+
+
 
 def main():
 	# Open cache
@@ -105,6 +162,11 @@ def main():
 	print
 	print result
 	print
+	for item in result:
+		listdir = item.lower().split("/")
+
+	url = 'site:' + host + ' '
+	summarize(listdir, url, accountKey)
 
 	# Write cache
 	writeCache(cache)
