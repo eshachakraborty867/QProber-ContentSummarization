@@ -17,9 +17,9 @@ I3620
 sS'hospital patients'
 p7
 I56600
-sS'hiv '
+sS'card drivers'
 p8
-I25000
+I30700
 sS'audio file'
 p9
 I11200
@@ -50,237 +50,237 @@ I3760
 sS'teams'
 p18
 I4740
-sS'fitness'
+sS'cholesterol'
 p19
-I82400
+I32500
 sS'exercise weight '
 p20
 I135000
 sS'ball team'
 p21
 I100
-sS'eating protein '
-p22
-I45500
 sS'card pc'
-p23
+p22
 I7600
 sS'module'
-p24
+p23
 I75
 sS'medical patient'
-p25
+p24
 I161000
 sS'bodybuilding protein '
-p26
+p25
 I40
 sS'aids'
-p27
+p26
 I14400
 sS'nba'
-p28
+p27
 I40
 sS'aerobic'
-p29
+p28
 I6690
 sS'multimedia'
-p30
+p29
 I42
 sS'fat muscle'
-p31
+p30
 I7920
 sS'eating weight '
-p32
+p31
 I137000
 sS'treadmill'
-p33
+p32
 I3580
 sS'nurse'
-p34
+p33
 I10100
-sS'cholesterol'
-p35
-I32500
+sS'fitness'
+p34
+I82400
 sS'laker'
-p36
+p35
 I5
 sS'calories fat'
-p37
+p36
 I128000
 sS'doctor medical'
-p38
+p37
 I88200
-sS'patients treatment'
-p39
-I139000
+sS'ball league'
+p38
+I16
 sS'health nutritional'
-p40
+p39
 I97600
 sS'buffer code'
-p41
+p40
 I0
 sS'ncaa'
-p42
+p41
 I8
 sS'wnba'
-p43
+p42
 I16
 sS'blood heart '
-p44
+p43
 I125000
 sS'insulin'
-p45
+p44
 I95700
 sS'health medicine'
-p46
+p45
 I121000
 sS'shareware'
-p47
+p46
 I0
 sS'agp card'
-p48
+p47
 I0
-sS'card drivers'
-p49
-I30700
+sS'hiv '
+p48
+I25000
 sS'cancer'
-p50
+p49
 I20000
 sS'carb carbs'
-p51
+p50
 I37800
 sS'cardiology '
-p52
+p51
 I4770
 sS'walkers'
-p53
+p52
 I3440
 sS'exercise protein '
-p54
+p53
 I38200
-sS'ball league'
-p55
-I16
 sS'championship team'
-p56
+p54
 I23
-sS'java'
-p57
-I80
+sS'patients treatment'
+p55
+I139000
 sS'cancer '
-p58
+p56
 I20000
 sS'avi file'
-p59
+p57
 I0
+sS'heart surgery '
+p58
+I35800
 sS'perl'
-p60
+p59
 I6
 sS'bios'
-p61
+p60
 I16
 sS'aids '
-p62
+p61
 I14400
-sS'club league'
-p63
-I26
+sS'array code'
+p62
+I5
 sS'pc windows'
-p64
+p63
 I75
 sS'calories protein '
-p65
+p64
 I43400
 sS'dental '
-p66
+p65
 I49900
 sS'avg nba'
-p67
+p66
 I5
 sS'cardiology'
-p68
+p67
 I4770
 sS'blood insulin '
-p69
+p68
 I59700
-sS'array code'
-p70
-I5
+sS'club league'
+p69
+I26
 sS'avg league'
-p71
+p70
 I1
-sS'heart surgery '
-p72
-I35800
+sS'aerobic '
+p71
+I6690
 sS'applet code'
-p73
+p72
 I0
 sS'walking '
-p74
+p73
 I10800
 sS'blazers game'
-p75
+p74
 I3
 sS'diabetes '
-p76
+p75
 I302000
 sS'dairy milk '
-p77
+p76
 I20800
 sS'fans football'
-p78
+p77
 I28
 sS'pacers'
-p79
+p78
 I8
 sS'fitness '
-p80
+p79
 I82100
 sS'vb'
-p81
+p80
 I19
 sS'calories weight '
-p82
+p81
 I125000
 sS'aspirin cardiologist '
-p83
+p82
 I21100
 sS'cholesterol lipitor '
-p84
+p83
 I14100
 sS'doctor health'
-p85
+p84
 I140000
 sS'application windows'
-p86
+p85
 I47
 sS'medical treatment'
-p87
+p86
 I104000
 sS'aerobics'
-p88
+p87
 I2300
 sS'ball referee'
-p89
+p88
 I7
 sS'bytes code'
-p90
+p89
 I0
 sS'cholesterol doctor '
-p91
+p90
 I33700
 sS'diet'
-p92
+p91
 I112000
 sS'hospital medical'
-p93
+p92
 I128000
 sS'diabetes'
-p94
+p93
 I303000
-sS'aerobic '
+sS'eating protein '
+p94
+I45500
+sS'java'
 p95
-I6690
+I80
 sS'card graphics'
 p96
 I47
@@ -335,13 +335,9 @@ I40
 sS'teams'
 p114
 I447000
-sS'fitness'
-<<<<<<< Updated upstream
-p18
-=======
+sS'cholesterol'
 p115
->>>>>>> Stashed changes
-I5010
+I8
 sS'ball team'
 p116
 I428000
@@ -381,13 +377,9 @@ I14
 sS'nurse'
 p128
 I6370
-sS'cholesterol'
-<<<<<<< Updated upstream
-p32
-=======
+sS'fitness'
 p129
->>>>>>> Stashed changes
-I8
+I5010
 sS'laker'
 p130
 I2
@@ -460,13 +452,9 @@ I27
 sS'bios'
 p153
 I26
-sS'club league'
-<<<<<<< Updated upstream
-p57
-=======
+sS'array code'
 p154
->>>>>>> Stashed changes
-I385000
+I10
 sS'dunks'
 p155
 I1
@@ -485,13 +473,9 @@ I25
 sS'cardiology'
 p160
 I13
-sS'array code'
-<<<<<<< Updated upstream
-p64
-=======
+sS'club league'
 p161
->>>>>>> Stashed changes
-I10
+I385000
 sS'blazers'
 p162
 I3690
@@ -597,356 +581,183 @@ I13400
 sS'game league'
 p197
 I51
-sS'application windows'
-<<<<<<< Updated upstream
-p101
-I16
 sS'hiv'
-p102
+p198
 I11900
 sS'aspirin cholesterol '
-p103
+p199
 I15300
 sS'acid diets '
-p104
+p200
 I95300
 sS'eating fat'
-p105
+p201
 I235000
 sS'radiation treatment '
-p106
+p202
 I12800
 sS'teams'
-p107
+p203
 I2940
-sS'fitness'
-p108
-I394000
+sS'cholesterol'
+p204
+I397000
 sS'exercise weight '
-p109
+p205
 I236000
 sS'ball team'
-p110
+p206
 I86
 sS'card pc'
-p111
+p207
 I33
 sS'module'
-p112
+p208
 I37
 sS'medical patient'
-p113
+p209
 I124000
 sS'bodybuilding protein '
-p114
+p210
 I39400
 sS'aids'
-p115
+p211
 I24500
 sS'nba'
-p116
+p212
 I31
 sS'aerobic'
-p117
+p213
 I17500
 sS'multimedia'
-p118
+p214
 I7
 sS'fat muscle'
-p119
+p215
 I100000
 sS'eating weight '
-p120
+p216
 I244000
 sS'treadmill'
-p121
+p217
 I16900
 sS'nurse'
-p122
+p218
 I12200
-sS'cholesterol'
-p123
-I397000
+sS'fitness'
+p219
+I394000
 sS'laker'
-p124
+p220
 I0
 sS'calories fat'
-p125
+p221
 I176000
 sS'doctor medical'
-p126
+p222
 I178000
 sS'ball league'
-p127
+p223
 I13
 sS'health nutritional'
-p128
+p224
 I231000
 sS'buffer code'
-p129
+p225
 I1
 sS'ncaa'
-p130
+p226
 I22
 sS'wnba'
-p131
+p227
 I4
 sS'blood heart '
-p132
+p228
 I87400
 sS'insulin'
-p133
+p229
 I10800
 sS'health medicine'
-p134
+p230
 I240000
 sS'shareware'
-p135
+p231
 I0
 sS'agp card'
-p136
-I0
-sS'hiv '
-p137
-I11900
-sS'cancer'
-p138
-I395000
-sS'carb carbs'
-p139
-I61700
-sS'cardiology '
-p140
-I2630
-sS'walkers'
-p141
-I72
-sS'exercise protein '
-p142
-I65300
-sS'championship team'
-p143
-I13
-sS'patients treatment'
-p144
-I125000
-sS'cancer '
-p145
-I395000
-sS'avi file'
-p146
-I0
-sS'perl'
-p147
-I6
-sS'bios'
-p148
-I5
-sS'aids '
-p149
-I24500
-sS'array code'
-p150
-I7
-sS'pc windows'
-p151
-I10
-sS'calories protein '
-p152
-I83700
-sS'dental '
-p153
-I15200
-sS'avg nba'
-p154
-I5
-sS'cardiology'
-p155
-I2630
-sS'blood insulin '
-p156
-=======
-p198
-I16
-sS'hiv'
-p199
-I11900
-sS'aspirin cholesterol '
-p200
-I15300
-sS'acid diets '
-p201
-I95300
-sS'eating fat'
-p202
-I235000
-sS'radiation treatment '
-p203
-I12800
-sS'teams'
-p204
-I2940
-sS'fitness'
-p205
-I394000
-sS'exercise weight '
-p206
-I236000
-sS'ball team'
-p207
-I86
-sS'card pc'
-p208
-I33
-sS'module'
-p209
-I37
-sS'medical patient'
-p210
-I124000
-sS'bodybuilding protein '
-p211
-I39400
-sS'aids'
-p212
-I24500
-sS'nba'
-p213
-I31
-sS'aerobic'
-p214
-I17500
-sS'multimedia'
-p215
-I7
-sS'fat muscle'
-p216
-I100000
-sS'eating weight '
-p217
-I244000
-sS'treadmill'
-p218
-I16900
-sS'nurse'
-p219
-I12200
-sS'cholesterol'
-p220
-I397000
-sS'laker'
-p221
-I0
-sS'calories fat'
-p222
-I176000
-sS'doctor medical'
-p223
-I178000
-sS'ball league'
-p224
-I13
-sS'health nutritional'
-p225
-I231000
-sS'buffer code'
-p226
-I1
-sS'ncaa'
-p227
-I22
-sS'wnba'
-p228
-I4
-sS'blood heart '
-p229
-I87400
-sS'insulin'
-p230
-I10800
-sS'health medicine'
-p231
-I240000
-sS'shareware'
 p232
 I0
-sS'agp card'
-p233
-I0
 sS'hiv '
-p234
+p233
 I11900
 sS'cancer'
-p235
+p234
 I395000
 sS'carb carbs'
-p236
+p235
 I61700
 sS'cardiology '
-p237
+p236
 I2630
 sS'walkers'
-p238
+p237
 I72
 sS'exercise protein '
-p239
+p238
 I65300
 sS'championship team'
-p240
+p239
 I13
 sS'patients treatment'
-p241
+p240
 I125000
 sS'cancer '
-p242
+p241
 I395000
 sS'avi file'
-p243
+p242
 I0
 sS'perl'
-p244
+p243
 I6
 sS'bios'
-p245
+p244
 I5
 sS'aids '
-p246
+p245
 I24500
 sS'array code'
-p247
+p246
 I7
 sS'pc windows'
-p248
+p247
 I10
 sS'calories protein '
-p249
+p248
 I83700
 sS'dental '
-p250
+p249
 I15200
 sS'avg nba'
-p251
+p250
 I5
 sS'cardiology'
-p252
+p251
 I2630
 sS'blood insulin '
-p253
->>>>>>> Stashed changes
+p252
 I31700
+sS'aerobic '
+p253
+I17500
 sS'club league'
 p254
 I6
 sS'avg league'
 p255
 I0
-sS'aerobic '
-<<<<<<< Updated upstream
-p159
-=======
+sS'heart surgery '
 p256
->>>>>>> Stashed changes
-I17500
+I42000
 sS'applet code'
 p257
 I0
@@ -1013,13 +824,9 @@ I81500
 sS'diabetes'
 p278
 I396000
-sS'heart surgery '
-<<<<<<< Updated upstream
-p182
-=======
+sS'application windows'
 p279
->>>>>>> Stashed changes
-I42000
+I16
 sS'java'
 p280
 I68
