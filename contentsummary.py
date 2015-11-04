@@ -41,15 +41,13 @@ def summarize(listdir, url):
 					before_ref = data[:ref].lower()
 					wordlist = re.findall('[a-z]+',before_ref)
 
-					if word in wordlist:
-						countdoc[word] += 1
 
 					for word in wordlist:
 						countdict[word] += 1
 
 			f2 = open('sample-' + directory + '.txt','w')
 			for word,count in sorted(countdict.items()):
-				f2.write(word + '  ' + str(count) + '  ' + str(countdoc[word])+ '\n')
+				f2.write(word + '#' + str(count) + '\n')
 
 			f1.close()
 			f2.close()

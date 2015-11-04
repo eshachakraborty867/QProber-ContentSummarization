@@ -1,8 +1,12 @@
 import xml.etree.ElementTree as ET
-import sys
 import urllib2
 import base64
 import pickle
+from collections import defaultdict
+import os,sys,subprocess
+import re
+import urllib
+import json
 
 
 CATEGORIES = {
