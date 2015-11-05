@@ -33,6 +33,7 @@ def getNofPages(site, query, accountKey, cache):
 	req = urllib2.Request(bingUrl, headers = headers)
 	response = urllib2.urlopen(req)
 	content = response.read()
+	
 	root = ET.fromstring(content)
 	entry = root.find('{http://www.w3.org/2005/Atom}entry')
 	result = int(entry[4][0][1].text)
@@ -41,7 +42,7 @@ def getNofPages(site, query, accountKey, cache):
 	if site not in cache:
 		cache[site] = {}
 	cache[site][' '.join(query)] = result
-
+	
 	# Return result
 	return result
 
@@ -97,18 +98,18 @@ def getTop4url(query, accountKey):
 	
 
 	query1 = q[1].strip()
-	
-	bingurl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27'+site + '%3a'.join(query1)+'%20 premiership%27&$top=10&$format=Atom'
+
+	bingurl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a'+ site + '%20'.join(query1) + '%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 	headers = {'Authorization': 'Basic ' + accountKeyEnc}
 	req = urllib2.Request(bingurl, headers = headers)
-	
-	#response = urllib2.urlopen(req)
-	#content = response.read()
-	#print type(content)
-	#root = ET.fromstring(content)
-	#entries = root.findall('{http://www.w3.org/2005/Atom}entry')
+	response = urllib2.urlopen(req)
+	content = response.read()
+	root = ET.fromstring(content)
+	entry = root.find('{http://www.w3.org/2005/Atom}entry')
+
 	return url4
+
 
 
 def summarize(listdir, url, accountKey):
@@ -122,6 +123,7 @@ def summarize(listdir, url, accountKey):
 			terms = lines.strip().split(" ")
 			keywords = '+'.join(terms[1:])
 
+			print lines
 			url4  = getTop4url(url+keywords, accountKey)
 
 			for eachurl in url4:
