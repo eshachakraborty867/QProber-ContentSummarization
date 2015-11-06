@@ -133,30 +133,36 @@ def summarize(listdir, url, accountKey):
 
 		# countdict: our word dictionary
 		countdict = defaultdict(int)
+		print "Operating on : " + directory
+		print ".................................."
 		
 		for lines in f1:
-
 			# Get the top 4 URLs from Bing
 			terms = lines.strip().split(" ")
 			keywords = terms[1:]			
 			url4  = getTop4url(directory, url, keywords, accountKey)
 
+			print keywords
 
 			for eachurl in url4:
-				words = []
-				# Fetch the content of the site
-				f = os.popen('lynx -dump "' + eachurl + '"')
-				for l in f.readlines():
-					if l.strip():
-						if l.split()[0]=="References":
-							break
-					l = re.sub(r'\[[^)]*\]', '', l)
-					words = words + re.split("\W+|\d|_", l) 
+				try:
+					words = []
+					# Fetch the content of the site
+					f = os.popen('lynx -dump "' + eachurl + '"')
+					for l in f.readlines():
+						if l.strip():
+							if l.split()[0]=="References":
+								break
+						l = re.sub(r'\[[^)]*\]', '', l)
+						words = words + re.split("\W+|\d|_", l) 
 
-					words = [x.lower() for x in words if x]
-					words = list(set(words))
-				for word in words:
-					countdict[word] += 1
+						words = [x.lower() for x in words if x]
+						words = list(set(words))
+					for word in words:
+						countdict[word] += 1
+				except Exception:
+					print "url not FOUND"
+					continue
 
 		f2 = open(directory + '-' +url+ '.txt','w')
 		for word,count in sorted(countdict.items()):
@@ -182,8 +188,12 @@ def main():
 	print "\nClassification:\n\n\t" + ' and '.join(result) + '\n'
 
 	# Content summary
+	listdir = []
 	for item in result:
-		listdir = item.lower().split("/")
+		dirs = item.lower().split("/")
+		for d in dirs:
+			if d not in listdir:
+				listdir.append(d)
 
 	print listdir
 	summarize(listdir, host, accountKey)
