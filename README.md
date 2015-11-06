@@ -24,7 +24,7 @@ Description of Content Summary Engine:
 -------------------------------------
 Part (a): Document Sampling
 		  This is implemented in the function "getTop4url(url, keywords, accountKey)".
-		  This function queries the bing API for the Deep Web Database (eg. 'url': daibetes.org), for the query (stored in keywords). It then returns the top 4 urls obtained from querying the Bing API.
+		  This function queries the bing API for the Deep Web Database as entered by the user for the value for <host> (eg. 'url': daibetes.org), for the query (stored in 'keywords'). It then returns the top 4 urls obtained from querying the Bing API.
 		  Also in this part we have taken care to avoid returning any url that ends with '.pdf' or '.ppt'
 
 Part (b): Content Summary Construction
@@ -33,9 +33,9 @@ Part (b): Content Summary Construction
 
 		  Our program prints each topic content summary to a text file, containing all the words in the sample -in dictionary order- together with their respective document frequencies. 
 
-		  The text of a web page is extracted using the command "lynx --dump". After that we parse the obtained contents. Any text beyond 'References' if not considered. We have substituted any character that is not an English alphabet by a ' '(i.e. blank space). After that we have parsed the srtings to obtain words. To avoid case-sensitive issues, all parsed words are converted to lowercase.
+		  The text of a web page is extracted using the command "lynx --dump". After that we parse the obtained contents. Any text beyond 'References' is not considered. We have substituted any character that is not an English alphabet by a ' '(i.e. blank space). After that we have parsed the srtings to obtain words. To avoid case-sensitive issues, all parsed words are converted to lowercase.
 
-		  We maintain a dictionary called 'countword' to store the frequency f each word. In the final step we are printing th sorted dictionary to a text file (eg Root-diabetes.org.txt).
+		  We maintain a dictionary called 'countword' to store the frequency of each word. In the final step we are printing the sorted dictionary to a text file (eg Root-diabetes.org.txt).
 
 Note
 -----
