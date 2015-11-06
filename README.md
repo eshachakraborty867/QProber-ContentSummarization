@@ -1,4 +1,21 @@
 # QProber-ContentSummarization
+TEAM
+======
+Alice Berard (aab2227)
+Esha Chakraborty (ec3074)
+
+Files:
+=======
+proj2-part1.py
+###### to be filled 
+
+Run the program
+================
+python proj2-part1.py <BING_ACCOUNT_KEY> <t_es> <t_ec> <host>
+
+Bing Account Search Key
+========================
+qFpzhPgsLtFnSNC/cyyTJU4npij92Zl2cMc2htQPUrs
 
 #Content Summarization
 This part of the project creates simple content summaries from Deep Web Databases. The content summary of a particular database consists of all words in the database and their corresponding frequencies.
