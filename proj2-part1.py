@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
-import urllib2
+import urllib, urllib2
 import base64
 import pickle
 from collections import defaultdict
 import os,sys,subprocess
 import re
-import urllib
 import json
 
 
@@ -28,12 +27,13 @@ def getNofPages(site, query, accountKey, cache):
 		return cache[site][' '.join(query)]
 
 	# If not, compute result
-	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?Query=%27site%3a' + site + '%20' + '%20'.join(query) + '%27&$top=10&$format=Atom'
+	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a'+ site + '%20'.join(query) + '%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 	headers = {'Authorization': 'Basic ' + accountKeyEnc}
 	req = urllib2.Request(bingUrl, headers = headers)
 	response = urllib2.urlopen(req)
 	content = response.read()
+	
 	root = ET.fromstring(content)
 	entry = root.find('{http://www.w3.org/2005/Atom}entry')
 	result = int(entry[4][0][1].text)
@@ -89,6 +89,72 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 	else:
 		return result
 
+def getTop4url(url, keywords, accountKey):
+	url4 = []
+	bingUrl ='https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a' \
+				+url+ '%20'+ '%20'.join(keywords.split(" "))+'%27&$top=10&$format=Atom'
+	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
+	headers = {'Authorization': 'Basic ' + accountKeyEnc}
+	req = urllib2.Request(bingUrl, headers = headers)
+	response = urllib2.urlopen(req)
+	#content contains the xml/json response from Bing.
+	content = response.read()
+	root = ET.fromstring(content)
+	entries = root.findall('{http://www.w3.org/2005/Atom}entry')
+	n = len(entries)
+	i = 0
+	
+	while i < n and len(url4) < 4:
+		url = entries[i][3][0][4].text
+		if url.endswith('.PDF') or url.endswith('.PPT') or url.endswith('.pdf') or url.endswith('.ppt'):
+			i += 1
+			continue
+		url4.append(url)
+		i += 1
+
+	return url4
+
+
+
+def summarize(listdir, url, accountKey):
+	# for each directory and its sub-directory
+	for directory in listdir:
+		try:
+			f1 = open(directory + '.txt')
+		except Exception:
+			sys.exit('No such directory')
+
+		#countdict: our word dictionary
+		countdict = defaultdict(int)
+
+		for lines in f1:
+			terms = lines.strip().split(" ")
+			keywords = ' '.join(terms[1:])
+			#get the top 4 URLs from Bing
+			url4  = getTop4url(url, keywords, accountKey)
+
+			for eachurl in url4:
+				words = []
+				#fetch the content of the site
+				f=os.popen('lynx -dump "'+eachurl+'"')
+				for l in f.readlines():
+					if l.strip():
+						if l.split()[0]=="References":
+							break
+					l=re.sub(r'\[[^)]*\]', '', l)
+					words=words+re.split("\W+|\d|_", l) 
+
+					words = [x.lower() for x in words if x]
+					words=list(set(words))
+				for word in words:
+					countdict[word] += 1
+		#print sorted(countdict.items())
+		f2 = open(directory + '-' +url+ '.txt','w')
+		for word,count in sorted(countdict.items()):
+			f2.write(word + '#' + str(count) + '\n')
+
+		f1.close()
+		f2.close()
 
 def main():
 	# Open cache
@@ -105,6 +171,10 @@ def main():
 	print
 	print result
 	print
+	for item in result:
+		listdir = item.lower().split("/")
+
+	summarize(listdir, host, accountKey)
 
 	# Write cache
 	writeCache(cache)

@@ -372,44 +372,47 @@ sS'avi file'
 p126
 I0
 sS'perl'
-p127
+p58
 I6
 sS'bios'
-p128
+p59
 I16
 sS'aids '
-p129
+p60
 I14400
 sS'array code'
-p130
+p61
 I5
 sS'pc windows'
-p131
+p62
 I75
 sS'calories protein '
-p132
+p63
 I43400
 sS'dental '
-p133
+p64
 I49900
 sS'avg nba'
-p134
+p65
 I5
 sS'cardiology'
-p135
+p66
 I4770
 sS'blood insulin '
-p136
+p67
 I59700
+sS'aerobic '
+p68
+I6690
 sS'club league'
 p137
 I26
 sS'avg league'
 p138
 I1
-sS'aerobic '
-p139
-I6690
+sS'heart surgery '
+p71
+I35800
 sS'applet code'
 p140
 I0
@@ -450,7 +453,7 @@ sS'doctor health'
 p152
 I140000
 sS'eating protein '
-p153
+p85
 I45500
 sS'medical treatment'
 p154
@@ -476,9 +479,9 @@ I128000
 sS'diabetes'
 p161
 I303000
-sS'heart surgery '
-p162
-I35800
+sS'application windows'
+p94
+I47
 sS'java'
 p163
 I80
@@ -920,35 +923,38 @@ I395000
 sS'avi file'
 p311
 I0
+sS'heart surgery '
+p243
+I42000
 sS'perl'
-p312
+p244
 I6
 sS'bios'
-p313
+p245
 I5
 sS'aids '
-p314
+p246
 I24500
 sS'array code'
-p315
+p247
 I7
 sS'pc windows'
-p316
+p248
 I10
 sS'calories protein '
-p317
+p249
 I83700
 sS'dental '
-p318
+p250
 I15200
 sS'avg nba'
-p319
+p251
 I5
 sS'cardiology'
-p320
+p252
 I2630
 sS'blood insulin '
-p321
+p253
 I31700
 sS'club league'
 p322
@@ -956,9 +962,9 @@ I6
 sS'avg league'
 p323
 I0
-sS'heart surgery '
-p324
-I42000
+sS'aerobic '
+p256
+I17500
 sS'applet code'
 p325
 I0
@@ -999,7 +1005,7 @@ sS'doctor health'
 p337
 I176000
 sS'application windows'
-p338
+p270
 I16
 sS'medical treatment'
 p339
@@ -1025,9 +1031,9 @@ I81500
 sS'diabetes'
 p346
 I396000
-sS'aerobic '
-p347
-I17500
+sS'eating protein '
+p279
+I164000
 sS'java'
 p348
 I68
