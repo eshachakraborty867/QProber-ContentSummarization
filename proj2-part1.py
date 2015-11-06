@@ -98,6 +98,9 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 masterdict = defaultdict(set)
 def getTop4url(directory, url, keywords, accountKey):
 	url4 = []
+	print "####################################"
+	print directory, masterdict[directory]
+	print "####################################"
 	bingUrl ='https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a' \
 				+url+ '%20'+ '%20'.join(keywords)+'%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
@@ -118,6 +121,7 @@ def getTop4url(directory, url, keywords, accountKey):
 			continue
 		if url not in masterdict[directory]:
 			url4.append(url)
+			masterdict[directory].append(url)
 		i += 1
 
 	return url4
