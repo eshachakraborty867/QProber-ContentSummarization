@@ -28,6 +28,7 @@ Part (a): Document Sampling
 		  Also in this part we have taken care to avoid returning any url that ends with '.pdf' or '.ppt'
 
 Part (b): Content Summary Construction
+		  This is implemented in the function 'summarize(listdir, url, accountKey)'.
 		  After document sampling for each category node under which we classified a given database, this part implements a "topic content summary" associated with each such sample. The topic content summary contains a list of all the words that appear in the associated document sample, and their frequency in the document sample.
 
 		  Our program prints each topic content summary to a text file, containing all the words in the sample -in dictionary order- together with their respective document frequencies. 
