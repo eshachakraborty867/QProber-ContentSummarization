@@ -191,6 +191,9 @@ def main():
 	print result
 	print "\nClassification:\n\n\t" + ' and '.join(result) + '\n'
 
+	# Write cache
+	writeCache(cache)
+
 	# Content summary
 	listdir = []
 	for item in result:
@@ -202,8 +205,7 @@ def main():
 	print listdir
 	summarize(listdir, host, accountKey)
 
-	# Write cache
-	writeCache(cache)
+	
 
 if __name__ == "__main__":
 	main()
