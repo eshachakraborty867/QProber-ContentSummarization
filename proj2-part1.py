@@ -95,7 +95,8 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 	else:
 		return result
 
-def getTop4url(url, keywords, accountKey):
+masterdict = defaultdict(set)
+def getTop4url(directory, url, keywords, accountKey):
 	url4 = []
 	bingUrl ='https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a' \
 				+url+ '%20'+ '%20'.join(keywords)+'%27&$top=10&$format=Atom'
@@ -115,7 +116,8 @@ def getTop4url(url, keywords, accountKey):
 		if url.endswith('.PDF') or url.endswith('.PPT') or url.endswith('.pdf') or url.endswith('.ppt'):
 			i += 1
 			continue
-		url4.append(url)
+		if url not in masterdict[directory]:
+			url4.append(url)
 		i += 1
 
 	return url4
@@ -123,6 +125,7 @@ def getTop4url(url, keywords, accountKey):
 def summarize(listdir, url, accountKey):
 	# For each directory and its sub-directory
 	for directory in listdir:
+		masterdict[directory] = []
 		try:
 			f1 = open(directory + '.txt')
 		except Exception:
@@ -130,13 +133,14 @@ def summarize(listdir, url, accountKey):
 
 		# countdict: our word dictionary
 		countdict = defaultdict(int)
-
+		
 		for lines in f1:
 
 			# Get the top 4 URLs from Bing
 			terms = lines.strip().split(" ")
 			keywords = terms[1:]			
-			url4  = getTop4url(url, keywords, accountKey)
+			url4  = getTop4url(directory, url, keywords, accountKey)
+
 
 			for eachurl in url4:
 				words = []
