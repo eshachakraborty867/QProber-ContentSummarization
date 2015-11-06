@@ -8,6 +8,7 @@ import re
 import json
 
 
+
 CATEGORIES = {
 	'Root': {'Root/Computers', 'Root/Sports', 'Root/Health'},
 	'Root/Computers': {'Root/Computers/Hardware', 'Root/Computers/Programming'},
@@ -27,7 +28,7 @@ def getNofPages(site, query, accountKey, cache):
 		return cache[site][' '.join(query)]
 
 	# If not, compute result
-	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a'+ site + '%20'.join(query) + '%27&$top=10&$format=Atom'
+	bingUrl = 'https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Composite?Query=%27site%3a' + site + '%20' + '%20'.join(query) + '%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 	headers = {'Authorization': 'Basic ' + accountKeyEnc}
 	req = urllib2.Request(bingUrl, headers = headers)
@@ -61,8 +62,9 @@ def probe(C, D, accountKey, cache):
 				C_hat[c] += getNofPages(D, row[1:], accountKey, cache)
 	return C_hat
 
-
 def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
+
+	print C
 	# Initialize result
 	result = []
 
@@ -75,8 +77,12 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 
 	# Calculate the ESpecificity vector
 	S_hat = {c: S_hat_parent*C_hat[c] / float(sum(C_hat.values())) for c in C_hat}
-	print C_hat
-	print S_hat
+
+	# Print information
+	for ci in C_hat:
+		print "\tCoverage for category:    " + ci + " is " + str(C_hat[ci])
+		print "\tSpecificity for category: " + ci + " is " + str(S_hat[ci])
+		print
 
 	# Go down the tree
 	for ci in CATEGORIES[C]:
@@ -92,7 +98,7 @@ def classify(C, D, t_es, t_c, S_hat_parent, accountKey, cache):
 def getTop4url(url, keywords, accountKey):
 	url4 = []
 	bingUrl ='https://api.datamarket.azure.com/Data.ashx/Bing/SearchWeb/v1/Web?Query=%27site%3a' \
-				+url+ '%20'+ '%20'.join(keywords.split(" "))+'%27&$top=10&$format=Atom'
+				+url+ '%20'+ '%20'.join(keywords)+'%27&$top=10&$format=Atom'
 	accountKeyEnc = base64.b64encode(accountKey + ':' + accountKey)
 	headers = {'Authorization': 'Basic ' + accountKeyEnc}
 	req = urllib2.Request(bingUrl, headers = headers)
@@ -114,41 +120,40 @@ def getTop4url(url, keywords, accountKey):
 
 	return url4
 
-
-
 def summarize(listdir, url, accountKey):
-	# for each directory and its sub-directory
+	# For each directory and its sub-directory
 	for directory in listdir:
 		try:
 			f1 = open(directory + '.txt')
 		except Exception:
 			sys.exit('No such directory')
 
-		#countdict: our word dictionary
+		# countdict: our word dictionary
 		countdict = defaultdict(int)
 
 		for lines in f1:
+
+			# Get the top 4 URLs from Bing
 			terms = lines.strip().split(" ")
-			keywords = ' '.join(terms[1:])
-			#get the top 4 URLs from Bing
+			keywords = terms[1:]			
 			url4  = getTop4url(url, keywords, accountKey)
 
 			for eachurl in url4:
 				words = []
-				#fetch the content of the site
-				f=os.popen('lynx -dump "'+eachurl+'"')
+				# Fetch the content of the site
+				f = os.popen('lynx -dump "' + eachurl + '"')
 				for l in f.readlines():
 					if l.strip():
 						if l.split()[0]=="References":
 							break
-					l=re.sub(r'\[[^)]*\]', '', l)
-					words=words+re.split("\W+|\d|_", l) 
+					l = re.sub(r'\[[^)]*\]', '', l)
+					words = words + re.split("\W+|\d|_", l) 
 
 					words = [x.lower() for x in words if x]
-					words=list(set(words))
+					words = list(set(words))
 				for word in words:
 					countdict[word] += 1
-		#print sorted(countdict.items())
+
 		f2 = open(directory + '-' +url+ '.txt','w')
 		for word,count in sorted(countdict.items()):
 			f2.write(word + '#' + str(count) + '\n')
@@ -167,13 +172,16 @@ def main():
 	host = sys.argv[4]
 
 	# Classify host
+	print "\nClassifying ...\n"
 	result = classify('Root', host, t_es, t_c, 1, accountKey, cache)
-	print
 	print result
-	print
+	print "\nClassification:\n\n\t" + ' and '.join(result) + '\n'
+
+	# Content summary
 	for item in result:
 		listdir = item.lower().split("/")
 
+	print listdir
 	summarize(listdir, host, accountKey)
 
 	# Write cache
