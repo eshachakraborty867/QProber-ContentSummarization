@@ -19,7 +19,7 @@ Files we are submitting
 
 To run the program
 ===================
-python proj2.py <BING_ACCOUNT_KEY> <t_es> <t_ec> <host>
+python proj2.py BING_ACCOUNT_KEY t_es t_ec host
 
 Note: If the results are not in the cache, please allow about 5 minutes to the sampling and summarization steps to run.
 You should see a percentage indicating you how much of the category is already processed.
